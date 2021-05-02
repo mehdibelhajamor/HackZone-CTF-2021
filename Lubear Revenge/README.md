@@ -1,6 +1,5 @@
 # Lubear Revenge Challenge
 
-
 We were given a source code and a netcat server ```nc 52.236.0.242 1337``` :
 
 ```python
@@ -95,11 +94,11 @@ while True:
         print("Invalid selection")
 ```
 
-Connecting to the netcat server we got this prompt:
+Connecting to the netcat server we got this prompt :
 
 ![2021-05-02 23_17_41-Kali - VMware Workstation](https://user-images.githubusercontent.com/62826765/116829635-a798f800-ab9c-11eb-9bcd-f79d9babc0e1.png)
 
-we have 3 choices:
+we have 3 choices :
 ```
 1 - sign : sign a commande in ['cat s*', 'ls', 'whoami']
 2 - exec : execute a commande given it's signature
@@ -111,6 +110,8 @@ We can see that ```k``` is generating as shown :
 ```python
 k = randbelow(sk.curve.order, payload)
 ```
+
+![2020-12-08 18_37_24-b00t2root-2020-CTF-Crypto-Challenges_README md at main · MehdiBHA_b00t2root-2020](https://user-images.githubusercontent.com/62826765/101520233-79641300-3984-11eb-888f-1ad5c2c6d68c.png)
 
 **Analyzing the function :**
 ```python
@@ -140,7 +141,7 @@ We can see that giving a payload it evaluate it with Lua language
 
 
 
-**Full _Python_ code :**
+**Full solver :**
 ```python
 from lupa import LuaRuntime
 import secrets
