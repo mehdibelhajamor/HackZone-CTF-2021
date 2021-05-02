@@ -96,17 +96,46 @@ while True:
 ```
 
 Connecting to the netcat server we got this prompt:
+
 ![2021-05-02 23_17_41-Kali - VMware Workstation](https://user-images.githubusercontent.com/62826765/116829635-a798f800-ab9c-11eb-9bcd-f79d9babc0e1.png)
+
 we have 3 choices:
 ```
-1 - sign : sign a commande in this list ['cat s*', 'ls', 'whoami']
+1 - sign : sign a commande in ['cat s*', 'ls', 'whoami']
 2 - exec : execute a commande given it's signature
 3 - exit
 ```
-First, i thought it's the usual**ECDSA** where we can exploit it and forge a signature for chosen command using 2 signatures but then i realized that the secret ```k``` is generating everytime i sign. 
+First, i thought it's the usual **ECDSA** where we can exploit it and forge a signature for chosen command using 2 signatures. But then i realized that the secret ```k``` is generating everytime i sign, so that won't help at all.
 
-We can see that ```k``` is generating with a function called 
+We can see that ```k``` is generating as shown :
+```python
+k = randbelow(sk.curve.order, payload)
+```
 
+**Analyzing the function :**
+```python
+def randbelow(n, payload):
+    """
+        Super fast cryptographically strong pseudo-random numbers suitable for
+        managing secrets such as account authentication, tokens, and similar.
+        Return a random int in the range [1, n)
+    """
+    L=LuaRuntime(encoding=None)
+
+    fastgen = L.eval('''
+    function(n, r, p)
+        local w = r
+        if next(p) ~= nil then
+            w = {}
+            setmetatable(w, p)
+        end
+        return w(n)
+    end
+    ''')
+    rand = fastgen(str(n), lambda n: str(secrets.randbelow(int(n))), L.eval(payload))
+    return int(rand)
+```
+We can see that giving a payload it evaluate it with Lua language 
 
 
 
