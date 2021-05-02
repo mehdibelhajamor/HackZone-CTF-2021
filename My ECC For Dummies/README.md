@@ -76,7 +76,7 @@ Our first step will be to calculate **S.y** as shown:
 Sy = (inverse(m2, p) * c2) % p
 ```
 
-<img src="https://latex.codecogs.com/svg.image?x^3&space;-&space;3x&space;&plus;&space;2455155546008943817740293915197451784769108058161191238065&space;=&space;y^2&space;mod&space;p" title="x^3 - 3x + 2455155546008943817740293915197451784769108058161191238065 = y^2 mod p" />
+<img src="x^3&space;-&space;3x&space;&plus;&space;2455155546008943817740293915197451784769108058161191238065&space;=&space;y^2&space;mod&space;p" title="x^3 - 3x + 2455155546008943817740293915197451784769108058161191238065 = y^2 mod p" />
 Since we have **S.y** now we can solve the cubic equation with Sage :
 ```
 x^3 - 3x + 2455155546008943817740293915197451784769108058161191238065 = y^2 mod p
