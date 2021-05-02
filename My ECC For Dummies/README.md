@@ -79,12 +79,17 @@ Sy = (inverse(m2, p) * c2) % p
 Since we have **S.y** now we can solve the cubic equation with Sage :
 ![image](https://user-images.githubusercontent.com/62826765/116828938-ba5dfd80-ab99-11eb-9456-99caf341cffd.png)
 ```python
+"""
+a = 6277101735386680763835789423207666416083908700390324961276 (or -3)
+b = 2455155546008943817740293915197451784769108058161191238065
+c = y^2
+"""
 F = GF(p)
 F.<x> = PolynomialRing(F)
 
-y2 = F(pow(Sy,2))
+c = F(pow(Sy,2))
 
-f = x^3 + a*x + b - y2
+f = x^3 + a*x + b - c
 f = f.monic()
 root = f.roots()
 ```
@@ -102,13 +107,14 @@ E = EllipticCurve(GF(p), [a, b])
 m2 = 19179670616298058934408348821305602258320084879756157
 c1 = 273313854985749705692360311202040937037213239294441646642
 c2 = 6076257418068540152032600239285650920642292327792130060609
+Sy = (inverse(m2, p) * c2) % p
 
 F = GF(p)
 F.<x> = PolynomialRing(F)
-Sy = (inverse(m2, p) * c2) % p
-y2 = F(pow(Sy,2))
 
-f = x^3 + a*x + b - y2
+c = F(pow(Sy,2))
+
+f = x^3 + a*x + b - c
 f = f.monic()
 root = f.roots()
 
@@ -119,5 +125,3 @@ for x in root:
     print(flag)
     break
 ```
-
-FLAG : **_HZiXCTF{Mv3lg4m4!3CC_cRypT0Sy5t3m_H4cK}_**
