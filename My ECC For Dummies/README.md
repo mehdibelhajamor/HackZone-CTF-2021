@@ -77,13 +77,14 @@ Sy = (inverse(m2, p) * c2) % p
 ```
 
 Since we have **S.y** now we can solve the cubic equation with Sage :
-               ![image](https://user-images.githubusercontent.com/62826765/116828938-ba5dfd80-ab99-11eb-9456-99caf341cffd.png)
+![image](https://user-images.githubusercontent.com/62826765/116828938-ba5dfd80-ab99-11eb-9456-99caf341cffd.png)
 ```python
 """
 a = 6277101735386680763835789423207666416083908700390324961276 (or -3)
 b = 2455155546008943817740293915197451784769108058161191238065
 c = y^2
 """
+
 F = GF(p)
 F.<x> = PolynomialRing(F)
 
