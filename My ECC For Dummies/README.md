@@ -71,7 +71,7 @@ Essentially, this challenge presented us **Menezes Vanstone Elliptic Curve Crypt
 
 We can see that we already have ```m2``` which is the second part of the flag, so the only problem here is to get the first part ```m1```. To solve the challenge we have to get the point **(S.x, S.y)** and especially **S.x** so we can calculate ```m1```.
 
-Our first step will be to calculate **S.y** as shown:
+Our first step will be to calculate **S.y** as shown :
 ```python
 Sy = (inverse(m2, p) * c2) % p
 ```
@@ -98,7 +98,7 @@ We will get 3 roots as a solution for the equation, so we try each one and solve
 
 ![2020-12-08 18_37_24-b00t2root-2020-CTF-Crypto-Challenges_README md at main · MehdiBHA_b00t2root-2020](https://user-images.githubusercontent.com/62826765/101520233-79641300-3984-11eb-888f-1ad5c2c6d68c.png)
 
-**Full _Sage_ code :**
+**Full solver (_Sage_) :**
 ```python
 from Crypto.Util.number import bytes_to_long, long_to_bytes, inverse
 
