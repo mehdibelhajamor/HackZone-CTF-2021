@@ -67,8 +67,11 @@ Ciphertext [ID: 3243154082094975110425161650374039692150707098951074985457]:
 """
 ```
 
-We can see that we have **m2** which is the second part of the flag. So we need to get the first part **m1**.
-We can calculate **S.y** by :
+We can see that we already have **m2** which is the second part of the flag, so the only problem here is to get the first part **m1**. 
+
+To solve the challenge we have to get the point **(S.x, S.y)** and especially **S.x** to calculate **m1** .
+
+**S.y** can be calculated by :
 ```python
 Sy = (inverse(m2, p) * c2) % p
 ```
