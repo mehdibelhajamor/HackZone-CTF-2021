@@ -67,12 +67,18 @@ Ciphertext [ID: 3243154082094975110425161650374039692150707098951074985457]:
 """
 ```
 
-Essentially, this challenge presented us **Menezes Vanstone Elliptic Curve Cryptosystem** using the secp192r1 (NIST 192-bit) ```Curve : y^2 = x^3 + -3x + 2455155546008943817740293915197451784769108058161191238065```
+Essentially, this challenge presented us **Menezes Vanstone Elliptic Curve Cryptosystem** using the secp192r1 (NIST 192-bit) curve ```y^2 = x^3 - 3x + 2455155546008943817740293915197451784769108058161191238065```
 
 We can see that we already have ```m2``` which is the second part of the flag, so the only problem here is to get the first part ```m1```. To solve the challenge we have to get the point **(S.x, S.y)** and especially **S.x** so we can calculate ```m1```.
 
 Our first step will be to calculate **S.y** as shown:
 ```python
 Sy = (inverse(m2, p) * c2) % p
+```
+
+\[ x^n + y^n = z^n \]
+Since we have **S.y** now we can solve the cubic equation with Sage :
+```
+x^3 - 3x + 2455155546008943817740293915197451784769108058161191238065 = y^2 mod p
 ```
 We now have all the necessary parameters **S.x**
