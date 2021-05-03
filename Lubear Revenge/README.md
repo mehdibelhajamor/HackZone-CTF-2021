@@ -143,11 +143,11 @@ Basically, it evaluates ```fastgen``` function which is written with **Lua Progr
 
 I'm not going through details cause i don't even know what is Lua Programmation Language x) But what i understand is that we need to inject some payload so that verifies ```next(p) ~= nil``` and ```setmetatable(w, p)``` will sets a function to ```w``` which can returns what we want.
 
-To be honest, i struggled too much reading about Lua Programmation Language, trying many things and dealing with many errors, but finally i found that injecting a table that contains a metamethod \_call with a function can give us what we want. So our final simple payload is :
+I spent much time reading about Lua Programmation Language, trying many things and dealing with many errors. But finally i found that injecting a table that contains a metamethod \_call with a function can give us what we want. So i got our final simple payload :
 ```
 payload = "{ __call = function(n) return '123456789'; end }"
 ```
-Using this payload, ```randbelow(sk.curve.order, payload)``` will return ```123456789``` and this is our secret ```k```.
+Using this payload, ```randbelow(sk.curve.order, payload)``` will return ```123456789``` as a secret ```k```.
 
 
 ![2020-12-08 18_37_24-b00t2root-2020-CTF-Crypto-Challenges_README md at main · MehdiBHA_b00t2root-2020](https://user-images.githubusercontent.com/62826765/101520233-79641300-3984-11eb-888f-1ad5c2c6d68c.png)
