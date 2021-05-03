@@ -158,7 +158,7 @@ Using this payload, ```randbelow(sk.curve.order, payload)``` will return ```1234
 
 **Breaking ECDSA :**
 
-![2021-05-03 04_41_54-Elliptic Curve Digital Signature Algorithm - Wikipedia](https://user-images.githubusercontent.com/62826765/116839378-20627900-abca-11eb-8617-f22d5862a839.png)
+![2021-05-03 04_41_54-Elliptic Curve Digital Signature Algorithm - Wikipedia](https://user-images.githubusercontent.com/62826765/116839450-5bfd4300-abca-11eb-861b-5b950455b283.png)
 
 
 
