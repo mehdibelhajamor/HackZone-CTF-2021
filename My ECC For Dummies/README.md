@@ -128,3 +128,5 @@ for x in root:
     print(flag)
     break
 ```
+
+FLAG : **HZiXCTF{Mv3lg4m4!3CC_cRypT0Sy5t3m_H4cK}**
