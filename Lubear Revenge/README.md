@@ -107,8 +107,8 @@ we have 3 choices :
 First, i thought it's the usual **ECDSA** where we can exploit it and forge a signature for chosen command using 2 signatures. But then i realized that the secret ```k``` is generating everytime i sign, so that won't help at all.
 
 The challenge contains 2 parts :
-- Exploiting ```randbelow()``` function to get the secret k.
-- Breaking ECDSA and sign the command "cat flag".
+- Exploiting ```randbelow()``` function to get the secret ```k```
+- Breaking ECDSA and sign the command "cat flag"
 
 ![2020-12-08 18_37_24-b00t2root-2020-CTF-Crypto-Challenges_README md at main · MehdiBHA_b00t2root-2020](https://user-images.githubusercontent.com/62826765/101520233-79641300-3984-11eb-888f-1ad5c2c6d68c.png)
 
@@ -153,6 +153,11 @@ I spent much time reading about Lua Programmation Language, trying many things a
 payload = "{ __call = function(n) return '123456789'; end }"
 ```
 Using this payload, ```randbelow(sk.curve.order, payload)``` will return ```123456789``` as a secret ```k```.
+
+![2020-12-08 18_37_24-b00t2root-2020-CTF-Crypto-Challenges_README md at main · MehdiBHA_b00t2root-2020](https://user-images.githubusercontent.com/62826765/101520233-79641300-3984-11eb-888f-1ad5c2c6d68c.png)
+
+**Breaking ECDSA :**
+
 
 
 ![2020-12-08 18_37_24-b00t2root-2020-CTF-Crypto-Challenges_README md at main · MehdiBHA_b00t2root-2020](https://user-images.githubusercontent.com/62826765/101520233-79641300-3984-11eb-888f-1ad5c2c6d68c.png)
