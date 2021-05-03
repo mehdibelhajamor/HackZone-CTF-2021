@@ -141,7 +141,7 @@ From the description inside the function we see that it returns a random number 
 
 Basically, it evaluates ```fastgen``` function which is written with **Lua Programmation Language** given arguments (the order n as string ```str(n)```, function that returns a random number as string in range(1, n) ```lambda n: str(secrets.randbelow(int(n)))```, the evaluation of our input payload ```L.eval(payload)```). If ```next(p) ~= nil``` then it will set a metatable ```p``` to the table ```w``` and apply it to n, else it it will apply ```lambda n: str(secrets.randbelow(int(n)))``` to n.
 
-I'm not going through details cause i don't even know what is Lua Programmation Language x) But what i understand is that we need to inject some payload so that verifies ```next(p) ~= nil``` and ```setmetatable(w, p)``` will sets a function to ```w``` which will return what we want.
+I'm not going through details cause i don't even know what is Lua Programmation Language x) But what i understand is that we need to inject some payload so that verifies ```next(p) ~= nil``` and ```setmetatable(w, p)``` will sets a function to ```w``` which can returns what we want.
 
 To be honest, i struggled too much reading about Lua Programmation Language, trying many things and dealing with many errors, but finally i found that injecting a table that contains a metamethod \_call with a function can give us what we want. So our final simple payload is :
 ```
