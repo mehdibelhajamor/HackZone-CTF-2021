@@ -137,7 +137,7 @@ def randbelow(n, payload):
     return int(rand)
 ```
 From the description we can see that it returns a random number in the range of [1, n]. But how that works here ?
-Basically, it evaluates a function written with **Lua Programmation Language** given arguments : the order n as string ```str(n)```, random function ```lambda n: str(secrets.randbelow(int(n)))``` and the evaluation of our payload input ```L.eval(payload)```.
+Basically, it evaluates a function written with **Lua Programmation Language** given arguments : the order n as string [```str(n)```], random function ```lambda n: str(secrets.randbelow(int(n)))``` and the evaluation of our payload input ```L.eval(payload)```.
 
 
 
