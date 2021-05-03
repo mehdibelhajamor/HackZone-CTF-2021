@@ -144,7 +144,7 @@ def randbelow(n, payload):
 ```
 From the description inside the function we see that it returns a random number in range(1, n). But how that works here ?
 
-Basically, it evaluates ```fastgen``` function which is written with **Lua Programmation Language** given arguments (the order n as string ```str(n)```, function that returns a random number as string in range(1, n) ```lambda n: str(secrets.randbelow(int(n)))```, the evaluation of our input payload ```L.eval(payload)```). If ```next(p) ~= nil``` then it will set a metatable ```p``` to the table ```w``` and apply it to n, else it it will apply ```lambda n: str(secrets.randbelow(int(n)))``` to n.
+Basically, it evaluates ```fastgen``` function which is written with **Lua Programmation Language** given arguments (the order n as string ```str(n)```, function that returns a random number as string in range(1, n) ```lambda n: str(secrets.randbelow(int(n)))```, the evaluation of our input payload ```L.eval(payload)```). If ```next(p) ~= nil``` then it will set a metatable ```p``` to the table ```w``` and apply it to n, else it will apply ```lambda n: str(secrets.randbelow(int(n)))```.
 
 I'm not going through details cause i don't even know what is Lua Programmation Language x) But what i understand is that we need to inject some payload so that verifies ```next(p) ~= nil``` and ```setmetatable(w, p)``` will sets a function to ```w``` which can returns what we want.
 
