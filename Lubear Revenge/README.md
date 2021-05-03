@@ -138,31 +138,24 @@ def randbelow(n, payload):
 ```
 From the description inside the function we see that it returns a random number in range(1, n). But how that works here ?
 
-Basically, it evaluates ```fastgen``` function which is written with **Lua Programmation Language** given arguments (the order n as string ```str(n)```, function that returns a random number as string in range(1, n) ```lambda n: str(secrets.randbelow(int(n)))```, the evaluation of our input payload ```L.eval(payload)```). If ```next(p) ~= nil``` then it will set a metatable ```p``` to the table ```w``` and apply it to n, else it it will aplly the previous ```w``` which is  ```lambda n: str(secrets.randbelow(int(n)))```.
+Basically, it evaluates ```fastgen``` function which is written with **Lua Programmation Language** given arguments (the order n as string ```str(n)```, function that returns a random number as string in range(1, n) ```lambda n: str(secrets.randbelow(int(n)))```, the evaluation of our input payload ```L.eval(payload)```). If ```next(p) ~= nil``` then it will set a metatable ```p``` to the table ```w``` and apply it to n, else it it will apply ```lambda n: str(secrets.randbelow(int(n)))``` to n.
 
-I'm not going through details cause i don't even know what is **Lua Programmation Language** x) But what i understand is that we need to inject some payload so that ```next(p) ~= nil``` and ```setmetatable(w, p)``` set a function to ```w```.
+I'm not going through details cause i don't even know what is Lua Programmation Language x) But what i understand is that we need to inject some payload so that verifies ```next(p) ~= nil``` and ```setmetatable(w, p)``` will sets a function to ```w``` which will return what we want.
 
-
-
-So we need to exploit the ```fastgen``` function with our payload so we can use any secret number we want.
-
-Here we see these lines:
-```python
-if next(p) ~= nil then
-   w = {}
-   setmetatable(w, p)
-end
+To be honest, i struggled too much reading about Lua Programmation Language, trying many things and dealing with many errors, but finally i found that injecting a table that contains a metamethod \_call with a function can give us what we want. So our final simple payload is :
 ```
+payload = "{ __call = function(n) return '123456789'; end }"
+```
+Using this payload, ```randbelow(sk.curve.order, payload)``` will return ```123456789``` and this is our secret ```k```.
+
 
 ![2020-12-08 18_37_24-b00t2root-2020-CTF-Crypto-Challenges_README md at main · MehdiBHA_b00t2root-2020](https://user-images.githubusercontent.com/62826765/101520233-79641300-3984-11eb-888f-1ad5c2c6d68c.png)
 
 **Full solver :**
 ```python
-from lupa import LuaRuntime
-import secrets
+from Crypto.Util.number import inverse
 import ecdsa
 from pwn import *
-from Crypto.Util.number import inverse
 
 conn = remote("52.236.0.242", 1337)
 #conn = process("./Lubear_Revenge.py")
