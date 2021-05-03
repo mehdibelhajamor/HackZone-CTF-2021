@@ -100,21 +100,20 @@ Connecting to the netcat server we got this prompt :
 
 we have 3 choices :
 ```
-1 - sign : sign a commande in ['cat s*', 'ls', 'whoami']
+1 - sign : sign a commande ['cat s*', 'ls', 'whoami']
 2 - exec : execute a commande given it's signature
 3 - exit
 ```
 First, i thought it's the usual **ECDSA** where we can exploit it and forge a signature for chosen command using 2 signatures. But then i realized that the secret ```k``` is generating everytime i sign, so that won't help at all.
 
+![2020-12-08 18_37_24-b00t2root-2020-CTF-Crypto-Challenges_README md at main · MehdiBHA_b00t2root-2020](https://user-images.githubusercontent.com/62826765/101520233-79641300-3984-11eb-888f-1ad5c2c6d68c.png)
+
+**Analyzing the source code :**
 By looking at the source code, we can see that ```k``` is generating as shown :
 ```python
 k = randbelow(sk.curve.order, payload)
 ```
-So i guess we to play with payload in order to exploit the ```randbelow()``` function
-
-![2020-12-08 18_37_24-b00t2root-2020-CTF-Crypto-Challenges_README md at main · MehdiBHA_b00t2root-2020](https://user-images.githubusercontent.com/62826765/101520233-79641300-3984-11eb-888f-1ad5c2c6d68c.png)
-
-**Analyzing the function :**
+Looking at the function :
 ```python
 def randbelow(n, payload):
     """
