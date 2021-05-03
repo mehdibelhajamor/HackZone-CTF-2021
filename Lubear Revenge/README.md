@@ -180,27 +180,23 @@ veri_key = vk.from_pem(pem)
 n = veri_key.pubkey.order
 
 payload = "{ __call = function(n) return '123456789'; end }"
-cmd = ["ls","whoami"]
-sig = []
-for i in range(2):
-    conn.recvuntil("choose:")
-    conn.sendline("1")
-    conn.recvuntil("cmd=")
-    conn.sendline(cmd[i])
-    conn.recvuntil("payload=")
-    conn.sendline(payload)
-    conn.recvuntil("sig=")
-    sig.append(conn.recvline().strip().decode())
+cmd = "ls"
 
-c1 = cmd[0]
-sig1 = sig[0]
+conn.recvuntil("choose:")
+conn.sendline("1")
+conn.recvuntil("cmd=")
+conn.sendline(cmd)
+conn.recvuntil("payload=")
+conn.sendline(payload)
+conn.recvuntil("sig=")
+sig = conn.recvline().strip().decode()
 
-r1, s1 = ecdsa.util.sigdecode_string(bytes.fromhex(sig1), order=n)
-h1 = ecdsa.keys.sha1(c1.encode("utf-8"))
-z1 = ecdsa.util.string_to_number(h1.digest())
+r, s = ecdsa.util.sigdecode_string(bytes.fromhex(sig), order=n)
+h = ecdsa.keys.sha1(cmd.encode("utf-8"))
+z = ecdsa.util.string_to_number(h.digest())
 k = 123456789
-r_inv = inverse(r1,n)
-d_a = ((s1*k - z1) * r_inv) % n
+r_inv = inverse(r, n)
+d_a = ((s*k - z) * r_inv) % n
 
 cmd_attack = "cat flag"
 sk_new = sk.from_secret_exponent(d_a)
