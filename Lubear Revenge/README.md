@@ -104,7 +104,7 @@ we have 3 choices :
 2 - exec : execute a commande given it's signature
 3 - exit
 ```
-First, i thought it's the usual **ECDSA** where we can exploit it and forge a signature for chosen command using 2 signatures. But then i realized that the secret ```k``` is generating everytime i sign, so that won't help at all.
+First, i thought it's the usual **ECDSA** where we forge a signature for chosen command using 2 signatures. But then i realized that the secret ```k``` is generating everytime i sign, so that won't help at all.
 
 The challenge contains 2 parts :
 - Exploiting ```randbelow()``` function to get the secret ```k```
