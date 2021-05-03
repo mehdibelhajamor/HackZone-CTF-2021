@@ -114,7 +114,7 @@ The challenge contains 2 parts :
 ![2020-12-08 18_37_24-b00t2root-2020-CTF-Crypto-Challenges_README md at main · MehdiBHA_b00t2root-2020](https://user-images.githubusercontent.com/62826765/101520233-79641300-3984-11eb-888f-1ad5c2c6d68c.png)
 
 
-**Exploiting ```randbelow()``` :**
+## Exploiting ```randbelow()``` :
 
 By looking at the source code, we can see that ```k``` is generating as shown :
 ```python
@@ -167,7 +167,7 @@ We have the secret ```k```, so by using a signature of a commande (e.g. ls) we c
 
 ![tt](https://user-images.githubusercontent.com/62826765/116840582-4722ae80-abce-11eb-8bb7-754a5387d9ce.png)
 
-**Full solver :**
+**Solver :**
 ```python
 from Crypto.Util.number import inverse
 import ecdsa
