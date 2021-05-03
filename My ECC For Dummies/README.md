@@ -99,7 +99,7 @@ We will get 3 roots as a solution for the equation, so we try each one of them a
 
 ![2020-12-08 18_37_24-b00t2root-2020-CTF-Crypto-Challenges_README md at main · MehdiBHA_b00t2root-2020](https://user-images.githubusercontent.com/62826765/101520233-79641300-3984-11eb-888f-1ad5c2c6d68c.png)
 
-**Full solver (_Sage_) :**
+**Solver (_Sage_) :**
 ```python
 from Crypto.Util.number import bytes_to_long, long_to_bytes, inverse
 
