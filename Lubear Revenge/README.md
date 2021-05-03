@@ -137,7 +137,14 @@ def randbelow(n, payload):
     return int(rand)
 ```
 From the description inside the function we see that it returns a random number in range(1, n). But how that works here ?
-Basically, it evaluates ```fastgen``` function which is written with **Lua Programmation Language** given arguments : the order n as string ```str(n)```, function that returns a random number in range(1, n) ```lambda n: str(secrets.randbelow(int(n)))``` and the evaluation of our input payload ```L.eval(payload)```. So we need to exploit the ```fastgen``` function with our payload so we can use any secret number we want.
+
+Basically, it evaluates ```fastgen``` function which is written with **Lua Programmation Language** given arguments (the order n as string ```str(n)```, function that returns a random number as string in range(1, n) ```lambda n: str(secrets.randbelow(int(n)))```, the evaluation of our input payload ```L.eval(payload)```). If ```next(p) ~= nil``` then it will set a metatable ```p``` to the table ```w``` and apply it to n, else it it will aplly the previous ```w``` which is  ```lambda n: str(secrets.randbelow(int(n)))```.
+
+I'm not going through details cause i don't even know what is **Lua Programmation Language** x) But what i understand is that we need to inject some payload so that ```next(p) ~= nil``` and ```setmetatable(w, p)``` set a function to ```w```.
+
+
+
+So we need to exploit the ```fastgen``` function with our payload so we can use any secret number we want.
 
 Here we see these lines:
 ```python
