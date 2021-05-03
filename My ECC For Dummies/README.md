@@ -1,6 +1,5 @@
 # My ECC For Dummies Challenge
 
-
 We were given a source code :
 
 ```python
