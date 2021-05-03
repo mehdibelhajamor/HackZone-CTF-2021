@@ -151,7 +151,7 @@ I'm not going through details cause i don't even know what is Lua Programmation 
 
 I spent some time reading about Lua Programmation Language (especially next() and setmetatable() functions), trying instructions and dealing with errors. But finally i found that injecting a table that contains a metamethod \_\_call with a function can give us what we need.
 
-Finally after many tries, i got this simple payload :
+After many tries, i got this simple payload :
 ```
 payload = "{ __call = function(n) return '123456789'; end }"
 ```
