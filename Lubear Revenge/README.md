@@ -197,4 +197,4 @@ flag = conn.recvline().decode().strip()
 print(flag)
 ```
 
-FLAG : _**HZiXCTF{1337_bear_p0wns_cu5v3s}**_
+FLAG : **HZiXCTF{1337_bear_p0wns_cu5v3s}**
