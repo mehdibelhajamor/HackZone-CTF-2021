@@ -160,6 +160,7 @@ Using this payload, ```randbelow(sk.curve.order, payload)``` will return ```1234
 
 ![2021-05-03 04_41_54-Elliptic Curve Digital Signature Algorithm - Wikipedia](https://user-images.githubusercontent.com/62826765/116839450-5bfd4300-abca-11eb-861b-5b950455b283.png)
 
+Here we have the secret ```k```, by using a signature of any commande we can sign (e.g. ls) we can calculate ```da``` 
 
 
 ![2020-12-08 18_37_24-b00t2root-2020-CTF-Crypto-Challenges_README md at main · MehdiBHA_b00t2root-2020](https://user-images.githubusercontent.com/62826765/101520233-79641300-3984-11eb-888f-1ad5c2c6d68c.png)
@@ -198,10 +199,10 @@ h = ecdsa.keys.sha1(cmd.encode("utf-8"))
 z = ecdsa.util.string_to_number(h.digest())
 k = 123456789
 r_inv = inverse(r, n)
-d_a = ((s*k - z) * r_inv) % n
+da = ((s*k - z) * r_inv) % n
 
 cmd_attack = "cat flag"
-sk_new = sk.from_secret_exponent(d_a)
+sk_new = sk.from_secret_exponent(da)
 sign_attack = sk_new.sign(cmd_attack.encode("utf-8"), k=k).hex()
 
 conn.recvuntil("choose:")
