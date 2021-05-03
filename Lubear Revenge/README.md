@@ -136,7 +136,10 @@ def randbelow(n, payload):
     rand = fastgen(str(n), lambda n: str(secrets.randbelow(int(n))), L.eval(payload))
     return int(rand)
 ```
-We can see that giving a payload it evaluate it with Lua language 
+From the description we can see that it returns a random number in the range of [1, n]. But how that works here ?
+Basically, it evaluates a function written with **Lua Programmation Language** given arguments : the order n as string ```str(n)```, random function ```lambda n: str(secrets.randbelow(int(n)))``` and the evaluation of our payload input ```L.eval(payload)```.
+
+
 
 
 ![2020-12-08 18_37_24-b00t2root-2020-CTF-Crypto-Challenges_README md at main · MehdiBHA_b00t2root-2020](https://user-images.githubusercontent.com/62826765/101520233-79641300-3984-11eb-888f-1ad5c2c6d68c.png)
