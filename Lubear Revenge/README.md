@@ -136,11 +136,16 @@ def randbelow(n, payload):
     rand = fastgen(str(n), lambda n: str(secrets.randbelow(int(n))), L.eval(payload))
     return int(rand)
 ```
-From the description we can see that it returns a random number in the range of [1, n]. But how that works here ?
-Basically, it evaluates a function written with **Lua Programmation Language** given arguments : the order n as string [```str(n)```], random function ```lambda n: str(secrets.randbelow(int(n)))``` and the evaluation of our payload input ```L.eval(payload)```.
+From the description we can see that it returns a random number in range(1, n). But how that works here ?
+Basically, it evaluates ```fastgen``` function which is written with **Lua Programmation Language** given arguments : the order n as string ```str(n)```, function that returns a random number in range(1, n) ```lambda n: str(secrets.randbelow(int(n)))``` and the evaluation of our input payload ```L.eval(payload)```. So we need to exploit the ```fastgen``` function with our payload so we can use any secret number we want.
 
-
-
+Here we see these lines:
+```python
+if next(p) ~= nil then
+   w = {}
+   setmetatable(w, p)
+end
+```
 
 ![2020-12-08 18_37_24-b00t2root-2020-CTF-Crypto-Challenges_README md at main · MehdiBHA_b00t2root-2020](https://user-images.githubusercontent.com/62826765/101520233-79641300-3984-11eb-888f-1ad5c2c6d68c.png)
 
@@ -163,7 +168,7 @@ vk = sk.get_verifying_key()
 veri_key = vk.from_pem(pem)
 n = veri_key.pubkey.order
 
-payload = "{ __call = function(n) return '"+str(n-1)+"'; end }"
+payload = "{ __call = function(n) return '123456789'; end }"
 cmd = ["ls","whoami"]
 sig = []
 for i in range(2):
@@ -182,7 +187,7 @@ sig1 = sig[0]
 r1, s1 = ecdsa.util.sigdecode_string(bytes.fromhex(sig1), order=n)
 h1 = ecdsa.keys.sha1(c1.encode("utf-8"))
 z1 = ecdsa.util.string_to_number(h1.digest())
-k = n-1
+k = 123456789
 r_inv = inverse(r1,n)
 d_a = ((s1*k - z1) * r_inv) % n
 
