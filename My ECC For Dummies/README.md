@@ -77,7 +77,7 @@ Sy = (inverse(m2, p) * c2) % p
 ```
 
 Since we have **S.y** now we can solve the cubic equation with Sage :
-![eq](https://user-images.githubusercontent.com/62826765/116840038-628cba00-abcc-11eb-8fb9-aabba0fdc870.png)
+![eq](https://user-images.githubusercontent.com/62826765/116840080-87812d00-abcc-11eb-9947-c7a91a8b6545.png)
 ```python
 """
 a = 6277101735386680763835789423207666416083908700390324961276 (or -3)
