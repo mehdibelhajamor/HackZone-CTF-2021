@@ -160,7 +160,7 @@ Using this payload, ```randbelow(sk.curve.order, payload)``` will return ```1234
 
 ![2021-05-03 04_41_54-Elliptic Curve Digital Signature Algorithm - Wikipedia](https://user-images.githubusercontent.com/62826765/116839450-5bfd4300-abca-11eb-861b-5b950455b283.png)
 
-Here we have the secret ```k```, by using a signature of a commande (e.g. ls) we can calculate ```da``` :
+We have the secret ```k```, so by using a signature of a commande (e.g. ls) we can calculate ```da``` and sign a command we want:
 
 
 
