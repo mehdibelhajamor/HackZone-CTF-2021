@@ -148,7 +148,7 @@ Basically, it evaluates ```fastgen``` function which is written with **Lua Progr
 
 I'm not going through details cause i don't even know what is Lua Programmation Language x) But what i understand is that we need to inject some payload so that verifies ```next(p) ~= nil``` and ```setmetatable(w, p)``` will sets a function to ```w``` which can returns what we want.
 
-I spent much time reading about Lua Programmation Language, trying many things and dealing with many errors. But finally i found that injecting a table that contains a metamethod \_call with a function can give us what we want. So i got our final simple payload :
+I spent some time reading about Lua Programmation Language (especially next() and setmetatable() functions), trying instructions and dealing with errors. But finally i found that injecting a table that contains a metamethod \_call with a function can give us what we want. So i got our final simple payload :
 ```
 payload = "{ __call = function(n) return '123456789'; end }"
 ```
