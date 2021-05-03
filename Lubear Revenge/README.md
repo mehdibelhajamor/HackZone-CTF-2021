@@ -136,7 +136,7 @@ def randbelow(n, payload):
     rand = fastgen(str(n), lambda n: str(secrets.randbelow(int(n))), L.eval(payload))
     return int(rand)
 ```
-From the description we can see that it returns a random number in range(1, n). But how that works here ?
+From the description inside the function we see that it returns a random number in range(1, n). But how that works here ?
 Basically, it evaluates ```fastgen``` function which is written with **Lua Programmation Language** given arguments : the order n as string ```str(n)```, function that returns a random number in range(1, n) ```lambda n: str(secrets.randbelow(int(n)))``` and the evaluation of our input payload ```L.eval(payload)```. So we need to exploit the ```fastgen``` function with our payload so we can use any secret number we want.
 
 Here we see these lines:
