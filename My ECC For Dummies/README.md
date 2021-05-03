@@ -71,12 +71,12 @@ Essentially, this challenge presented us **Menezes Vanstone Elliptic Curve Crypt
 
 We can see that we already have ```m2``` which is the second part of the flag, so the only problem here is to get the first part ```m1```. To solve the challenge we have to get the point **(S.x, S.y)** and especially **S.x** so we can calculate ```m1```.
 
-Our first step will be to calculate **S.y** as shown :
+Our first step will be calculating **S.y** :
 ```python
 Sy = (inverse(m2, p) * c2) % p
 ```
 
-Since we have **S.y** now we can solve the cubic equation with Sage and get **S.x** :
+Now we have **S.y** so we can solve the cubic equation with Sage and get **S.x** :
 
 ![eq](https://user-images.githubusercontent.com/62826765/116840124-a7b0ec00-abcc-11eb-9355-6e6afdfd724d.png)
 ```python
